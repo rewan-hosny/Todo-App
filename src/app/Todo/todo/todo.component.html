@@ -1,0 +1,67 @@
+<h1>Todo List</h1>
+<form (submit)="addTodoItem()">
+    <div>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" [(ngModel)]="newItem.title" required>
+    </div>
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" [(ngModel)]="newItem.description" required></textarea>
+    </div>
+    <div>
+      <label for="dueDate">Due Date:</label>
+      <input type="date" id="dueDate" name="dueDate" [(ngModel)]="newItem.dueDate" required>
+    </div>
+    <div>
+      <label for="isComplete">Is Complete:</label>
+      <input type="checkbox" id="isComplete" name="isComplete" [(ngModel)]="newItem.isComplete">
+    </div>
+    <button type="submit">Add Item</button>
+  </form>
+
+
+
+<ul>
+  <li *ngFor="let item of listTodo">{{ item.title }}
+
+
+
+
+  </li>
+</ul>
+<div *ngFor="let item of listTodo">
+  <h2>{{item.title}}</h2>
+  <p>Description: {{item.description}}</p>
+  <p>Due Date: {{item.dueDate | date}}</p>
+  <p>Status: {{item.isComplete ? 'Completed' : 'Not Completed'}}</p>
+  <button (click)="item.editMode = true">Edit</button>
+
+
+<form *ngIf="item.editMode" (ngSubmit)="updateTodoItem(item)">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="title" [(ngModel)]="item.title">
+  </div>
+  <div class="form-group">
+    <label for="dueDate">Due Date</label>
+    <input type="date" class="form-control" id="dueDate" name="dueDate" [(ngModel)]="item.dueDate">
+  </div>
+  <div class="form-group">
+    <label for="isComplete">Complete</label>
+    <input type="checkbox" class="form-control" id="isComplete" name="isComplete" [(ngModel)]="item.isComplete">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" name="description" [(ngModel)]="item.description"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+  <button (click)="item.editMode = false">Cancel</button>
+</form>
+</div>
+
+
+
+      <!-- <button (click)="deleteHero(contact)" *ngIf="contact.id">Delete</button> -->
+
+    <button  (click)="addTodoItem()">Add</button>
+  

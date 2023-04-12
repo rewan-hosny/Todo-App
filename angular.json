@@ -22,12 +22,20 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
-            ],
+              "src/assets",
+  {
+    "glob": "**/*",
+    "input": "node_modules/bootstrap/dist/js",
+    "output": "/assets/bootstrap/js"
+  }
+],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "/assets/css/style.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+
             ],
-            "scripts": []
+            "scripts": [  "node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
           "configurations": {
             "production": {
@@ -84,12 +92,24 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
-            ],
+              "src/assets",
+  {
+    "glob": "**/*",
+    "input": "node_modules/bootstrap/dist/js",
+    "output": "/assets/bootstrap/js"
+  }
+],
+      
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+               "/assets/css/style.css",
+              
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+
             ],
-            "scripts": []
+            "scripts": [
+                "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           }
         }
       }

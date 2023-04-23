@@ -58,6 +58,9 @@ var TodoComponent = /** @class */ (function () {
             console.log(error);
         });
     };
+    TodoComponent.prototype.updateTodomode = function (item) {
+        item.editMode = !item.editMode;
+    };
     __decorate([
         core_1.Input()
     ], TodoComponent.prototype, "todo");

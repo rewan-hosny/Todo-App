@@ -3,12 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { TodoComponent } from './Todo/todo/todo.component';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: HomeComponent },
+  
   { path: 'login', component: LoginComponent },
-  { path: 'todo', component: TodoComponent }
+  { path: 'todo', component: TodoComponent },
+  {path:'register',component:RegisterComponent}
 ];
 
 

@@ -75,5 +75,11 @@ updateTodoItem(todo: EditTodo): void {
   }
 
 
+  updateTodomode(item: EditTodo) {
+    item.editMode = !item.editMode;
   }
+}
+
+
+  
 

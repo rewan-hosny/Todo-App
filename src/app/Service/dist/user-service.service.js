@@ -17,7 +17,19 @@ var UserService = /** @class */ (function () {
         this.baseUrl = 'https://localhost:7101/api/';
     }
     UserService.prototype.register = function (user) {
-        return axios_1["default"].post(this.baseUrl + "Auth/register", user);
+        var _this = this;
+        return axios_1["default"].post(this.baseUrl + "Auth/register", user)
+            .then(function (response) {
+            var token = response.data;
+            var decodedToken = _this.jwtHelper.decodeToken(token);
+            localStorage.setItem('Authorization', token);
+            localStorage.setItem('name', decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
+            localStorage.setItem('userid', decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
+            _this.router.navigate(['/todo']);
+            return true;
+        })["catch"](function (error) {
+            return error.response.data.error;
+        });
     };
     UserService.prototype.login = function (email, password) {
         var _this = this;

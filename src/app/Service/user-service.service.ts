@@ -15,8 +15,21 @@ private baseUrl = 'https://localhost:7101/api/';
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService,private localStorage: LocalStorageService, private router: Router) {}
 
   register(user: any) {
-    return axios.post(`${this.baseUrl}Auth/register`, user);
-  }
+  return axios.post(`${this.baseUrl}Auth/register`, user)
+    .then(response => {
+      const token = response.data;
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      localStorage.setItem('Authorization', token);
+      localStorage.setItem('name', decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
+      localStorage.setItem('userid', decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
+      this.router.navigate(['/todo']);
+      return true;
+    })
+    .catch(error => {
+      return error.response.data.error;
+    });
+}
+
 
   login(email: string,password: string) {
     

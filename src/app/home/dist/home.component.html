@@ -13,30 +13,42 @@
   <!-- ======= Header ======= -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero d-flex align-items-center">
+ <section id="hero" class="hero d-flex align-items-center">
 
-    <div class="container">
+    <div class="container" style="background-color: #fff;">
       <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up">We offer modern solutions for growing your business</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">We are team of talented designers making websites with Bootstrap</h2>
-          <div data-aos="fade-up" data-aos-delay="600">
-            <div class="text-center text-lg-start">
-              <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-           <span><a routerLink="/login">Go to Login</a></span>
-
-
-                <i class="bi bi-arrow-right"></i>
-              </a>
+        <div class="col-lg-6 d-flex flex-column justify-content-center " data-aos="fade-up">
+          <h1 style="margin-bottom: 20px;">Welcome to my Todo List!</h1>
+          
+          <div>
+            <div class="text-center text-lg-start" style="margin-top: 30px;">
+              <div *ngIf="isAuthenticated()">
+                <a class="getstarted scrollto btn btn-primary btn-lg  "style="background: #1da0f2;
+                 font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 8px 20px ;
+    margin-left: 30px;
+    
+    border-radius: 4px;
+    color: #fff;
+      border: 1px solid #1da0f2;" routerLink="/todo">My Todo</a>
+              </div>
+              <div *ngIf="!isAuthenticated()">
+                <a class="getstarted scrollto btn btn-primary btn-lg" style="background: #1da0f2;
+    padding: 8px 20px ;
+    margin-left: 30px;
+     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+    border-radius: 4px;
+    color: #fff;
+      border: 1px solid #1da0f2;" routerLink="/login">Login</a>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-          <img src="../assets/img/hero-img.png" class="img-fluid" alt="">
+        <div class="col-lg-6 hero-img" data-aos="zoom-out">
+          <img src="assets/img/hero-img.png" class="img-fluid" alt="">
         </div>
       </div>
     </div>
 
   </section><!-- End Hero -->
-
- 

@@ -16,7 +16,12 @@ var login_component_1 = require("./login/login.component");
 var register_component_1 = require("./register/register.component");
 var ngx_webstorage_1 = require("ngx-webstorage");
 var todo_component_1 = require("./Todo/todo/todo.component");
-var app_routing_module_1 = require("./app-routing.module"); // <-- Add this line
+var app_routing_module_1 = require("./app-routing.module");
+var home_component_1 = require("./home/home.component"); // <-- Add this line
+var filter_complete_pipe_1 = require("./Todo/filter-complete.pipe");
+var router_1 = require("@angular/router");
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+var common_1 = require("@angular/common");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -26,12 +31,18 @@ var AppModule = /** @class */ (function () {
                 app_component_1.AppComponent,
                 login_component_1.LoginComponent,
                 register_component_1.RegisterComponent,
-                todo_component_1.TodoComponent
+                todo_component_1.TodoComponent,
+                home_component_1.HomeComponent,
+                filter_complete_pipe_1.FilterCompletePipe
             ],
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpClientModule,
+                core_1.NgModule,
+                router_1.RouterModule,
+                forms_1.FormsModule,
+                common_1.CommonModule,
                 angular_jwt_1.JwtModule.forRoot({
                     config: {
                         tokenGetter: function tokenGetter() {

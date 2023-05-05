@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../Service/user-service.service';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+ constructor(
+   
+    private userService: UserService
+  ) {}
+  isAuthenticated(): boolean {
+    return this.userService.isAuthenticated();
+  }
 
 }

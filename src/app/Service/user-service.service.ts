@@ -14,21 +14,27 @@ private baseUrl = 'https://localhost:7101/api/';
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService,private localStorage: LocalStorageService, private router: Router) {}
 
-  register(user: any) {
-  return axios.post(`${this.baseUrl}Auth/register`, user)
-    .then(response => {
-      const token = response.data;
-      const decodedToken = this.jwtHelper.decodeToken(token);
-      localStorage.setItem('Authorization', token);
-      localStorage.setItem('name', decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
-      localStorage.setItem('userid', decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
-      this.router.navigate(['/todo']);
-      return true;
-    })
-    .catch(error => {
-      return error.response.data.error;
+register(email: string, name: string, password: string) {
+  this.http.post(`${this.baseUrl}Auth/register`, { email: email, name: name, password: password },
+    { responseType: 'text' })
+    .subscribe(response => {
+      const token = response;
+
+      try {
+        const decodedToken = this.jwtHelper.decodeToken(token);
+        localStorage.setItem('Authorization', token);
+        localStorage.setItem('name', decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
+        localStorage.setItem('userid', decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
+        this.router.navigate(['/todo']);
+      } catch (error) {
+        console.log(error);
+        console.log(response);
+      }
+    }, error => {
+      console.log(error);
     });
 }
+
 
 
   login(email: string,password: string) {
@@ -73,6 +79,6 @@ isAuthenticated(): boolean {
 
 
   logout() {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('Authorization');
   }
 }

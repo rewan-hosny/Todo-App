@@ -14,14 +14,20 @@ var TodoService = /** @class */ (function () {
         this.http = http;
         this.baseUrl = 'https://localhost:7101/api/';
     }
-    TodoService.prototype.getMyTodoList = function () {
+    TodoService.prototype.getMyTodoList = function (isCompleted) {
+        if (isCompleted === void 0) { isCompleted = null; }
         var token = localStorage.getItem('Authorization');
+        var url = this.baseUrl + "Todo/mytodos";
+        // If isCompleted is provided, add it as a query parameter to the URL
+        if (isCompleted !== null) {
+            url += "?isCompleted=" + isCompleted;
+        }
         var httpOptions = {
             headers: new http_1.HttpHeaders({
                 'Authorization': "Bearer " + token
             })
         };
-        return this.http.get(this.baseUrl + "Todo/mytodos", httpOptions);
+        return this.http.get(url, httpOptions);
     };
     TodoService.prototype.addTodoItem = function (todoItem) {
         var token = localStorage.getItem('Authorization');
@@ -46,6 +52,16 @@ var TodoService = /** @class */ (function () {
             })
         };
         return this.http.patch(this.baseUrl + "Todo/mytodos/" + id, todoItem, httpOptions);
+    };
+    TodoService.prototype.DeleteTodo = function (id) {
+        var token = localStorage.getItem('Authorization');
+        var httpOptions = {
+            headers: new http_1.HttpHeaders({
+                'Authorization': "Bearer " + token,
+                'Content-Type': 'application/json'
+            })
+        };
+        return this.http["delete"](this.baseUrl + "Todo/mytodos/" + id, httpOptions);
     };
     TodoService = __decorate([
         core_1.Injectable({

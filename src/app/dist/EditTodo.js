@@ -8,6 +8,7 @@ var EditTodo = /** @class */ (function () {
         this.isComplete = false;
         this.description = '';
         this.editMode = false;
+        this.showDescription = false;
     }
     return EditTodo;
 }());

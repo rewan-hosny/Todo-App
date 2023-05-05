@@ -14,6 +14,8 @@ var TodoComponent = /** @class */ (function () {
         this.todoList = [];
         this.newItem = {};
         this.listTodo = [];
+        this.filteredListTodo = [];
+        this.isCompleted = null;
         this.id = 0;
         this.TodoUpdate = new core_1.EventEmitter();
     }
@@ -22,11 +24,23 @@ var TodoComponent = /** @class */ (function () {
     };
     TodoComponent.prototype.loadTodoList = function () {
         var _this = this;
-        this.todoService.getMyTodoList().subscribe(function (result) {
+        this.todoService.getMyTodoList(this.isCompleted).subscribe(function (result) {
             _this.listTodo = result;
+            _this.filteredListTodo = _this.listTodo.filter(function (todo) {
+                if (_this.isCompleted === null) {
+                    return true; // show all items if isCompleted is null
+                }
+                else {
+                    return todo.isComplete === _this.isCompleted;
+                }
+            });
         }, function (error) {
             console.log(error);
         });
+    };
+    TodoComponent.prototype.toggleCompleted = function (isCompleted) {
+        this.isCompleted = isCompleted;
+        this.loadTodoList();
     };
     TodoComponent.prototype.addTodoItem = function () {
         var _this = this;
@@ -48,6 +62,49 @@ var TodoComponent = /** @class */ (function () {
             console.log("Error updating todo item with ID " + todo.id + ": " + error);
         });
     };
+    // deleteTodoItem(id: number): void {
+    //   this.id = id;
+    //   const modal = (<any>$('#ConfirmDeleteComponent'));
+    //   modal.modal('show');
+    // }
+    // confirmDelete() {
+    //   this.todoService.DeleteTodo(this.id).subscribe(
+    //     () => {
+    //       console.log(`Todo item with ID ${this.id} deleted successfully.`);
+    //       this.loadTodoList();
+    //     },
+    //     (error: any) => {
+    //       console.log(`Error deleting todo item with ID ${this.id}: ${error}`);
+    //     }
+    //   );
+    // }
+    // openDeleteConfirmationModal(id: number) {
+    //   const modalRef = this.modalService.open(ConfirmDeleteComponent, { centered: true });
+    //   modalRef.componentInstance.delete.subscribe(() => {
+    //     this.todoService.DeleteTodo(id).subscribe(
+    //       () => {
+    //         console.log(`Todo item with ID ${id} deleted successfully.`);
+    //         this.loadTodoList();
+    //       },
+    //       (error: any) => {
+    //         console.log(`Error deleting todo item with ID ${id}: ${error}`);
+    //       }
+    //     );
+    //   });
+    // }
+    // deleteTodoItem(id: number): void {
+    //   if(confirm('Are you sure you want to delete this item?')) {
+    //     this.todoService.DeleteTodo(id).subscribe(
+    //       () => {
+    //         console.log(`Todo item with ID ${id} deleted successfully.`);
+    //         this.loadTodoList();
+    //       },
+    //       (error: any) => {
+    //         console.log(`Error deleting todo item with ID ${id}: ${error}`);
+    //       }
+    //     );
+    //   }
+    // }
     TodoComponent.prototype.createTodo = function () {
         var _this = this;
         this.todoService.addTodoItem(this.newItem).subscribe(function (response) {

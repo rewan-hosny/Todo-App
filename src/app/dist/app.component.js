@@ -8,7 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 var core_1 = require("@angular/core");
 var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+    function AppComponent(userService) {
+        this.userService = userService;
         this.isloggedIn = false;
         this.title = 'Todo.UI';
         this.isLoggedIn = false;
@@ -20,6 +21,12 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.ngOnChanges = function (changes) {
         var token = localStorage.getItem('Authorization');
         this.isloggedIn = !!token;
+    };
+    AppComponent.prototype.logout = function () {
+        this.userService.logout();
+    };
+    AppComponent.prototype.isAuthenticated = function () {
+        return this.userService.isAuthenticated();
     };
     AppComponent = __decorate([
         core_1.Component({

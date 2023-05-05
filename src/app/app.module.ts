@@ -10,10 +10,6 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { TodoComponent } from './Todo/todo/todo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component'; // <-- Add this line
-import { FilterCompletePipe } from './Todo/filter-complete.pipe';
-import { ConfirmDeleteComponent } from './Todo/todo/confirmDelete';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 
 
 @NgModule({
@@ -22,10 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     RegisterComponent,
     TodoComponent,
-    HomeComponent,
-    FilterCompletePipe,
-    ConfirmDeleteComponent
-   
+    HomeComponent
   ],
   imports: [
     BrowserModule,

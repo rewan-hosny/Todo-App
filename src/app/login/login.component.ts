@@ -30,6 +30,5 @@ onLogin(token: any) {
 
   }
 
-
 }
 

@@ -75,23 +75,23 @@
                         <form  (submit)="addTodoItem()" class="register-form" id="login-form">
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text"  id="your_name" placeholder="Title" name="title" [(ngModel)]="newItem.title" required/>
+                                <input type="text" class="inputed " id="your_name" placeholder="Title" name="title" [(ngModel)]="newItem.title" required/>
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                   <input id="description" name="description" placeholder="Description" rows="3" [(ngModel)]="newItem.description" required>
+                                   <input id="description" class="inputed " name="description" placeholder="Description" rows="3" [(ngModel)]="newItem.description" required>
                             </div>
                             
                              <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                   <input type="date" id="dueDate"  name="dueDate" [(ngModel)]="newItem.dueDate">
+                                   <input type="date" id="dueDate" class="inputed " name="dueDate" [(ngModel)]="newItem.dueDate">
                             </div>
                             <div class="form-group">
-                                <input type="checkbox"class="form-check-input"  id="isComplete" name="isComplete" [(ngModel)]="newItem.isComplete">
+                                <input type="checkbox"class=" form-check-input"  id="isComplete" name="isComplete" [(ngModel)]="newItem.isComplete">
                                 <label for="remember-me" class="label-agree-term"><span><span></span></span>Is compelete</label>
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit"  class="form-submit" value="Add To List"/>
+                                <input type="submit"  class="inputed  form-submit" value="Add To List"/>
                             </div>
                         </form>
                       
@@ -106,41 +106,92 @@
       <div class="col">
         <div class="card" id="list1" style="border-radius: .75rem; background-color: #ffffff;">
           <div class="card-body py-4 px-4 px-md-5">
+            
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" [ngClass]="{'active': isCompleted === null}" (click)="toggleCompleted(null)">All</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [ngClass]="{'active': isCompleted === true}" (click)="toggleCompleted(true)">Completed</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [ngClass]="{'active': isCompleted === false}" (click)="toggleCompleted(false)">Not completed</a>
+  </li>
+</ul>
+
+
+<ul *ngFor="let item of filteredListTodo " class="list-group list-group-horizontal rounded-0 bg-transparent">
+  <li class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+    <div class="d-grid gap-2">
+
+  <li class="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
+  <div class="form-check me-3">
+    <input class="form-check-input me-0" type="checkbox" value="" id="flexCheckChecked1" style="background-color: #1da0f2;" aria-label="..." checked />
+  </div>
+  <div class="d-flex flex-grow-1 align-items-center">
+    <p class="lead fw-normal mb-0 font-title" style="font-size: 30px;">{{item.title}}</p>
+  </div>
+</li>
+
+
+      <!-- <p class="lead fw-normal mb-0" style="color:#012970; grid-column: 1 / 4;">{{item.title}}</p> -->
+      <!-- <div *ngIf="item.showDescription" class="mt-2 todo-description"  style="grid-column: 1 / 4;">
+        <p class="mb-0">Description : {{item.description}}</p>
+      </div> -->
+      
+      <div *ngIf="item.editMode" class="edit-form">
+  <form class="row g-3" (ngSubmit)="updateTodoItem(item)">
+    <div class="col-md-6">
+      <label for="editTitle" class="form-label">Title</label>
+      <input type="text" class="inputed  form-control" [(ngModel)]="item.title" name="title" id="editTitle">
+    </div>
+    <div class="col-md-6">
+      <label for="editDueDate" class="form-label">Due Date</label>
+      <input type="date" class="inputed  form-control" [(ngModel)]="item.dueDate" name="dueDate" id="editDueDate">
+    </div>
+    <div class="col-12">
+      <label for="editDescription" class=" form-label">Description</label>
+      <textarea class="form-control" [(ngModel)]="item.description" name="description" id="editDescription" rows="3"></textarea>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="item.editMode = false">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+    </div>
+  </li>
+  <li class="list-group-item ps-3 pe-0 py-1 rounded-0 border-0 bg-transparent">
+    <div class="d-flex flex-row justify-content-end mb-1">
+      <a class="text-info buttonEdit" data-mdb-toggle="tooltip" title="Edit todo" (click)="item.editMode = true"><i class="fa fa-pencil me-3"></i></a>
+ <a class="text-danger buttonEdit" data-mdb-toggle="tooltip" title="Delete todo"><i class="fa fa-trash"></i></a>
+      <!-- <button type="button" class="btn btn-link text-muted buttonDescription" (click)="item.showDescription = !item.showDescription" data-mdb-toggle="tooltip" title="Show/hide description">Description</button> -->
+    </div>
+ 
+
+    
+    <!-- <div *ngIf="item.showDescription" class="text-end text-muted">
+      <a  class="text-muted" data-mdb-toggle="tooltip" title="Created date">
+        <p class="small mb-0"><i ></i>{{item.dueDate}}</p>
+      </a>
+    
+    </div> -->
+  </li>
+</ul>
+
+
+
+
+
  
             
 
   
-          <ul *ngFor="let item of listTodo" class="list-group list-group-horizontal rounded-0 bg-transparent">
-  <li class="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
-    <div class="form-check" >
-      <input class="form-check-input me-0" type="checkbox" value="" id="flexCheckChecked1" style="background-color: #1da0f2;" aria-label="..." checked />
-    </div>
-  </li>
-  <li class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
-    <p class="lead fw-normal mb-0" style="color:#012970;">{{item.title}}</p>
-  </li>
-  <li class="list-group-item ps-3 pe-0 py-1 rounded-0 border-0 bg-transparent">
-    <div class="d-flex flex-row justify-content-end mb-1">
-      <a  class="text-info buttonEdit" data-mdb-toggle="tooltip" title="Edit todo" (click)="item.editMode = true"><i
-            class="fa fa-pencil me-3"></i></a>
-      <div *ngIf="item.editMode">
-        <form (ngSubmit)="updateTodoItem(item)">
-          <input type="text" [(ngModel)]="item.title" name="title">
-          <input type="text" [(ngModel)]="item.description" name="description">
-          <input type="date" [(ngModel)]="item.dueDate" name="dueDate">
-          <button type="submit">Save</button>
-          <button (click)="item.editMode = false">Cancel</button>
-        </form>
-      </div>
-      <a href="#!" class="text-danger" data-mdb-toggle="tooltip" title="Delete todo"><i class="fa fa-trash"></i></a>
-    </div>
-    <div class="text-end text-muted">
-      <a  class="text-muted" data-mdb-toggle="tooltip" title="Created date">
-        <p class="small mb-0"><i ></i>{{item.dueDate}}</p>
-      </a>
-    </div>
-  </li>
-</ul>
+
+
 
           </div>
         </div>

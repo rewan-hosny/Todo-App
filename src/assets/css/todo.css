@@ -148,6 +148,7 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
   width: 900px;
   background: #fff;
   margin: 0 auto;
+  padding: 50px;
   box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
@@ -169,7 +170,7 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
   background: #e72734; }
   .material-icons-name {
   font-size: 18px; }
-input {
+.inputed {
   width: 100%;
   display: block;
   border: none;
@@ -177,28 +178,28 @@ input {
   padding: 6px 30px;
   font-family: Poppins;
   box-sizing: border-box; }
-  input::-webkit-input-placeholder {
+  .inputed::-webkit-input-placeholder {
     color: #999; }
-  input::-moz-placeholder {
+  .inputed::-moz-placeholder {
     color: #999; }
-  input:-ms-input-placeholder {
+  .inputed:-ms-input-placeholder {
     color: #999; }
-  input:-moz-placeholder {
+  .inputed:-moz-placeholder {
     color: #999; }
-  input:focus {
+  .inputed:focus {
     border-bottom: 1px solid #222; }
-    input:focus::-webkit-input-placeholder {
+    .inputed:focus::-webkit-input-placeholder {
       color: #222; }
-    input:focus::-moz-placeholder {
+    .inputed:focus::-moz-placeholder {
       color: #222; }
-    input:focus:-ms-input-placeholder {
+    .inputed:focus:-ms-input-placeholder {
       color: #222; }
-    input:focus:-moz-placeholder {
+    .inputed:focus:-moz-placeholder {
       color: #222; }
 
 
 
-input, select, textarea {
+.inputed, select, textarea {
   outline: none;
   appearance: unset !important;
   -moz-appearance: unset !important;
@@ -208,7 +209,7 @@ input, select, textarea {
 
 
 
-input:focus, select:focus, textarea:focus {
+.inputed:focus, select:focus, textarea:focus {
   outline: none;
   box-shadow: none !important;
   -moz-box-shadow: none !important;
@@ -218,7 +219,7 @@ input:focus, select:focus, textarea:focus {
 
  
 
-input[type=radio] {
+.inputed[type=radio] {
   appearance: radio !important;
   -moz-appearance: radio !important;
   -webkit-appearance: radio !important;
@@ -241,3 +242,111 @@ input[type=radio] {
   cursor: pointer; }
   .form-submit:hover {
     background: #4292dc; }
+    *********************************
+.todo-description {
+          float: right;
+          width: 50%;
+          margin-top: 10px;
+        }
+.buttonEdit:active {
+                  transform: scale(0.95);
+                }
+                .edit-form {
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #deb88793;
+}
+.todo-description{
+  border: 1px solid #deb887; 
+
+padding: 5px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.todo-description p{
+  color: #000000;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 600;
+}
+
+.font-title {
+    color: #b7986f;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bolder;
+ 
+ 
+}
+*************************************
+/* register */
+.register-img-container {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #ccc;
+    padding: 20px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+  }
+
+  .register-form-container {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #ccc;
+    padding: 20px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .register-img-container {
+      margin-right: 0;
+    }
+
+    .register-form-container {
+      margin-top: 30px;
+    }
+  }
+  .font-register {
+    color: #b7986f;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bolder;
+ 
+ 
+}
+***********************************
+/* design of button */
+.form-check-input {
+  width: 1.5em;
+  height: 1.5em;
+  margin-top: 0.2em;
+
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.form-check-label {
+  cursor: pointer;
+}
+
+/* in page home */
+.buttonHome{
+background: #1da0f2;
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 4px;
+    color: #fff;
+      border: 1px solid #1da0f2;
+}
+/* font in page home  */
+.fontHome {
+    color: #ffffff;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bolder;
+  
+}
+ 

@@ -7,7 +7,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 var core_1 = require("@angular/core");
-var axios_1 = require("axios");
 var UserService = /** @class */ (function () {
     function UserService(http, jwtHelper, localStorage, router) {
         this.http = http;
@@ -16,19 +15,24 @@ var UserService = /** @class */ (function () {
         this.router = router;
         this.baseUrl = 'https://localhost:7101/api/';
     }
-    UserService.prototype.register = function (user) {
+    UserService.prototype.register = function (email, name, password) {
         var _this = this;
-        return axios_1["default"].post(this.baseUrl + "Auth/register", user)
-            .then(function (response) {
-            var token = response.data;
-            var decodedToken = _this.jwtHelper.decodeToken(token);
-            localStorage.setItem('Authorization', token);
-            localStorage.setItem('name', decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
-            localStorage.setItem('userid', decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
-            _this.router.navigate(['/todo']);
-            return true;
-        })["catch"](function (error) {
-            return error.response.data.error;
+        this.http.post(this.baseUrl + "Auth/register", { email: email, name: name, password: password }, { responseType: 'text' })
+            .subscribe(function (response) {
+            var token = response;
+            try {
+                var decodedToken = _this.jwtHelper.decodeToken(token);
+                localStorage.setItem('Authorization', token);
+                localStorage.setItem('name', decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
+                localStorage.setItem('userid', decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
+                _this.router.navigate(['/todo']);
+            }
+            catch (error) {
+                console.log(error);
+                console.log(response);
+            }
+        }, function (error) {
+            console.log(error);
         });
     };
     UserService.prototype.login = function (email, password) {
@@ -65,7 +69,7 @@ var UserService = /** @class */ (function () {
         return !this.jwtHelper.isTokenExpired(tokenWithoutBearer);
     };
     UserService.prototype.logout = function () {
-        localStorage.removeItem('access_token');
+        localStorage.removeItem('Authorization');
     };
     UserService = __decorate([
         core_1.Injectable({

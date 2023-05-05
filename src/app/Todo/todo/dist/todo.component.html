@@ -135,10 +135,10 @@
 </li>
 
 
-      <!-- <p class="lead fw-normal mb-0" style="color:#012970; grid-column: 1 / 4;">{{item.title}}</p> -->
-      <!-- <div *ngIf="item.showDescription" class="mt-2 todo-description"  style="grid-column: 1 / 4;">
+      <!-- <p class="lead fw-normal mb-0" style="color:#012970; grid-column: 1 / 4;">{{item.title}}</p>  -->
+      <div *ngIf="item.showDescription" class="mt-2 todo-description"  style="grid-column: 1 / 4;">
         <p class="mb-0">Description : {{item.description}}</p>
-      </div> -->
+      </div> 
       
       <div *ngIf="item.editMode" class="edit-form">
   <form class="row g-3" (ngSubmit)="updateTodoItem(item)">
@@ -168,17 +168,17 @@
     <div class="d-flex flex-row justify-content-end mb-1">
       <a class="text-info buttonEdit" data-mdb-toggle="tooltip" title="Edit todo" (click)="item.editMode = true"><i class="fa fa-pencil me-3"></i></a>
  <a class="text-danger buttonEdit" data-mdb-toggle="tooltip" title="Delete todo"><i class="fa fa-trash"></i></a>
-      <!-- <button type="button" class="btn btn-link text-muted buttonDescription" (click)="item.showDescription = !item.showDescription" data-mdb-toggle="tooltip" title="Show/hide description">Description</button> -->
+      <button type="button" class="btn btn-link text-muted buttonDescription" (click)="item.showDescription = !item.showDescription" data-mdb-toggle="tooltip" title="Show/hide description">Description</button>
     </div>
  
 
     
-    <!-- <div *ngIf="item.showDescription" class="text-end text-muted">
+    <div *ngIf="item.showDescription" class="text-end text-muted">
       <a  class="text-muted" data-mdb-toggle="tooltip" title="Created date">
         <p class="small mb-0"><i ></i>{{item.dueDate}}</p>
       </a>
     
-    </div> -->
+    </div>
   </li>
 </ul>
 

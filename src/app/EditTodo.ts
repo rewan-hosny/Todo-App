@@ -4,6 +4,7 @@ export class EditTodo {
   dueDate: string = '';
   isComplete: boolean = false;
     description: string = '';
-    editMode: boolean = false;
+  editMode: boolean = false;
+  showDescription: boolean = false;
     
 }
